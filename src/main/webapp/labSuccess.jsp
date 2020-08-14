@@ -137,11 +137,55 @@
   
   <div class="form-group">
     <label for="title">Patient Id</label>
-    <input type="text" name="patientid" id="title" class="form-controll"/>
+<select class="form-controll" name = "patientid" id = "patientid">
+				  <option value="">Patient Id</option>
+				  <% 
+				  try{
+					  Class.forName("com.mysql.jdbc.Driver");
+					  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Mohan007@123");
+					  
+					  String query = "select id from project.patient";
+					  
+					  ResultSet rs = con.createStatement().executeQuery(query); 
+					 
+					  while(rs.next())
+					  {
+						   %>
+						  <option style = "color:black;" value="<%=rs.getInt("id") %>"><%=rs.getInt("id") %>
+						  </option>
+						<% }
+					  }catch(Exception e)
+				  		{
+						  out.print(e.getMessage());
+				 		 }%> 
+					  
+                  </select>
   </div>
   <div class="form-group">
     <label for="title">Doctor Id</label>
-    <input type="text" name="doctorid" id="title" class="form-controll"/>
+   <select class="form-controll" name = "doctorid" id = "doctorid">
+				  <option value="" >Doctor Id</option>
+				  <% 
+				  try{
+					  Class.forName("com.mysql.jdbc.Driver");
+					  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Mohan007@123");
+					  
+					  String query = "select id from project.doctor";
+					  
+					  ResultSet rs = con.createStatement().executeQuery(query); 
+					 
+					  while(rs.next())
+					  {
+						   %>
+						  <option style = "color:black;" value="<%=rs.getInt("id") %>"><%=rs.getInt("id") %>
+						  </option>
+						<% }
+					  }catch(Exception e)
+				  		{
+						  out.print(e.getMessage());
+				 		 }%> 
+					  
+                  </select>
   </div>
   <div class="form-group">
     <label for="caption">Test Description</label>
