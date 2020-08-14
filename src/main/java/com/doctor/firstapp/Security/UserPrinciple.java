@@ -1,4 +1,4 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.Security;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.doctor.firstapp.model.Doctor;
+
 import com.doctor.firstapp.model.Users;
 
 public class UserPrinciple implements UserDetails {

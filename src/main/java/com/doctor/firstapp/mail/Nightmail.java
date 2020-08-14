@@ -1,4 +1,4 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.mail;
 
 import java.io.IOException;
 import java.sql.Connection;

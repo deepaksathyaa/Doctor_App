@@ -1,4 +1,4 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.Controller;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.doctor.firstapp.Repository.DoctorRepo;
 import com.doctor.firstapp.model.Doctor;
 
 

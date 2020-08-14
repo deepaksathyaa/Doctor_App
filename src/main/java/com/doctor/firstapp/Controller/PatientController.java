@@ -1,4 +1,4 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.Controller;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doctor.firstapp.Repository.PatientRepo;
 import com.doctor.firstapp.model.Patient;
 
 @RestController

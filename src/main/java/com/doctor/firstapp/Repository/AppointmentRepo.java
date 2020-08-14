@@ -1,4 +1,4 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.Repository;
 
 import java.util.ArrayList;
 import java.util.List;

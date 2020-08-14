@@ -5,33 +5,24 @@ package com.doctor.firstapp.service;
 
 
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+
 import java.util.Optional;
 
-
-
-//import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-//import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import com.doctor.firstapp.AppointmentRepo;
-import com.doctor.firstapp.DoctorRepo;
-import com.doctor.firstapp.HospitalRepo;
-import com.doctor.firstapp.LabRepo;
-import com.doctor.firstapp.PatientRepo;
-import com.doctor.firstapp.PrescriptionRepo;
-import com.doctor.firstapp.TabletRepo;
-import com.doctor.firstapp.UserRepo;
-import com.doctor.firstapp.labtestRepo;
+import com.doctor.firstapp.Repository.AppointmentRepo;
+import com.doctor.firstapp.Repository.DoctorRepo;
+import com.doctor.firstapp.Repository.LabRepo;
+import com.doctor.firstapp.Repository.PatientRepo;
+import com.doctor.firstapp.Repository.PrescriptionRepo;
+import com.doctor.firstapp.Repository.TabletRepo;
+import com.doctor.firstapp.Repository.UserRepo;
+import com.doctor.firstapp.Repository.labtestRepo;
 import com.doctor.firstapp.model.Appointment;
 import com.doctor.firstapp.model.Doctor;
 import com.doctor.firstapp.model.Hospital;
@@ -63,7 +54,7 @@ public class DocStorageService {
   @Autowired
   private TabletRepo t;
   @Autowired
-  private HospitalRepo ht;
+  private com.doctor.firstapp.Repository.HospitalRepo ht;
   
   public labtest saveFile(int testerid, int doctorid, int patientid, String description, MultipartFile files) {
 	  String docname = files.getOriginalFilename();

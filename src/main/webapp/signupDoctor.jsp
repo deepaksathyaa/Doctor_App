@@ -1,3 +1,6 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -36,7 +39,33 @@
                         </div>
                         <div class="form-group">
                             <label>Hospital Name</label>
-                            <input type="text" class="form-control" name= "hname">
+                            <select class="form-control" name = "hname">
+                     <option style = "color : black;"value="">
+                        Select Hospital
+                     </option>
+                     <% 
+				  try{
+					  Class.forName("com.mysql.jdbc.Driver");
+					  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Mohan007@123");
+					  
+					  String query = "select Distinct(hospitalname) from project.hospital";
+					  
+					  ResultSet rs = con.createStatement().executeQuery(query); 
+					 
+					  while(rs.next())
+					  {
+						
+						   %>
+						  <option  style = "color : black;" value="<%=rs.getString("hospitalname") %>"><%=rs.getString("hospitalname") %>
+						  </option>
+						
+                     
+                  </select>
+                  <% }}catch(Exception e)
+				  		{
+						  out.print(e.getMessage());
+				 		 }%> 
+					  
                         </div>
 						<div class="form-group">
                             <label>Speciality</label>

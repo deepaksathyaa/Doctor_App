@@ -134,7 +134,7 @@
 										<th>Appointment Date</th>
 										<th>Appointment Time</th>
 										
-										
+										<th class="text-right">Action</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -152,13 +152,21 @@
 								
 									<tr>
 										<td><%=rs.getInt("id") %></td>
-										<td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""><%=rs.getString("patient_name") %> </td>
+										<td><%=rs.getString("patient_name") %> </td>
 										<td><%=rs.getInt("age") %></td>
 										<td><%=rs.getString("doctorname") %></td>
 										<td><%=rs.getString("speciality") %></td>
 										<td><%=rs.getString("date") %></td>
 										<td><%=rs.getString("time") %></td>
-										
+										<td class="text-right">
+											<div class="dropdown dropdown-action">
+												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+												<div class="dropdown-menu dropdown-menu-right">
+													
+													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appointment" onclick="myFunction(<%=rs.getInt("id") %>)" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+												</div>
+											</div>
+										</td>
 										
 									</tr>
 									<% }
@@ -173,7 +181,27 @@
 					</div>
                 </div>
             </div>
-           
+           <form action="patientdash" method="post">
+			<div id="delete_appointment" class="modal fade delete-modal" role="dialog">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-body text-center">
+							<img src="assets/img/sent.png" alt="" width="50" height="46">
+							<h3>Are you sure want to delete this Appointment?</h3>
+							 <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Enter your Email <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="email" name = "email">
+                                    </div>
+                                </div>
+							<br><div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+								<button id="bt" name="id" type="submit" class="btn btn-danger" value= "1" >Delete</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
 		</div>
     </div>
   
@@ -291,7 +319,7 @@
 										<td><%=rs.getString("doctor_name") %> </td>
 										<td><%=rs.getString("description") %></td>
 										<td><form action = "downloadPrescription/<%= rs.getInt("id") %>" method = "POST">
-										<button type = "submit" color:white;">download</button></form>
+										<button type = "submit" style = "color:white;">download</button></form>
 										
 										</td>
 										
@@ -366,7 +394,7 @@
   
   
   <div class="form-group">
-    <label for="title" style = "color:white;">Speciality</label>
+    <label for="title" style = "color:white;">Select Speciality:</label>
     <select class="form-controll"name = "speciality">
                                             <option style = "color : black;">Select</option>
                                             <option style = "color : black;">Dentists</option>
@@ -379,7 +407,8 @@
   </div>
   
   <div class="form-group">
-    <select class="form-controll" name = "hospitalname" id = "">
+  <br><label for="title" style = "color:white;">Select Hospital:</label>
+    <br><select class="form-controll" name = "hospitalname" id = "">
                      <option style = "color : black;"value="">
                         Select Hospital
                      </option>
@@ -404,7 +433,7 @@
 						
                      
                   </select>
-                  <div class="form-group">
+                  <br><br><div class="form-group">
     <button type="submit" name = "id" style = "color:white;" value ="<%=s.getInt("id") %>">Search</button>
     <% }}
 					  }catch(Exception e)
@@ -426,6 +455,10 @@
   </div>
 </div>
 
-
+<script>
+function myFunction(id) {
+  document.getElementById("bt").value = id;
+}
+</script>
 </body>
 </html>  

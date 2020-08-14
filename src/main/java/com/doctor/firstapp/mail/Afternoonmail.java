@@ -1,20 +1,19 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.mail;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
-
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-public class morningmail implements Job{
+public class Afternoonmail implements Job {
+
+	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		
-		
-		
+		// TODO Auto-generated method stub
 		try {
 	        Class.forName("com.mysql.jdbc.Driver").newInstance();
 			  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Mohan007@123");
@@ -30,18 +29,18 @@ public class morningmail implements Job{
 				  ResultSet s = con.createStatement().executeQuery(query1); 
 				  while(s.next())
 				  {
-					  if(!rs.getString("morning").equals(""))
+					  if(!rs.getString("afternoon").equals(""))
 					  {
-						  String body ="you have to take a few tablets on Morning " + rs.getString("morning");
-							try {
-								SendEmail.sendEmailpres(s.getString("email"),"Prescription Remainder",body);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+					  String body ="you have to take a few tablets on Afternoon " + rs.getString("afternoon");
+		try {
+			SendEmail.sendEmailpres(s.getString("email"),"Prescription Remainder",body);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 					  }
-				  } 
-			}
+		} 
+				  }
 			  }catch(Exception e) {
 				  
 			  }

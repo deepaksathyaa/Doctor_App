@@ -3,7 +3,6 @@ package com.doctor.firstapp;
 import org.springframework.core.io.ByteArrayResource;
 
 import java.sql.Date;
-import java.sql.Time;
 //import java.io.File;
 import java.util.Iterator;
 import java.util.List;
@@ -24,11 +23,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import com.doctor.firstapp.model.Alien;
+
 import com.doctor.firstapp.model.Doctor;
+import com.doctor.firstapp.Repository.AppointmentRepo;
+import com.doctor.firstapp.Repository.DoctorRepo;
+import com.doctor.firstapp.Repository.HospitalRepo;
+import com.doctor.firstapp.Repository.LabRepo;
+import com.doctor.firstapp.Repository.PatientRepo;
+import com.doctor.firstapp.Repository.PrescriptionRepo;
+import com.doctor.firstapp.Repository.TabletRepo;
+import com.doctor.firstapp.Repository.UserRepo;
+import com.doctor.firstapp.Repository.labtestRepo;
+import com.doctor.firstapp.mail.SendEmail;
 import com.doctor.firstapp.model.Appointment;
 import com.doctor.firstapp.model.Labtester;
 import com.doctor.firstapp.model.Patient;
@@ -37,7 +46,6 @@ import com.doctor.firstapp.model.Users;
 import com.doctor.firstapp.model.labtest;
 import com.doctor.firstapp.model.tablet;
 import com.doctor.firstapp.service.DocStorageService;
-import com.mysql.cj.Session;
 
 @Controller
 public class HomeController 
@@ -49,8 +57,7 @@ public class HomeController
 	PatientRepo re;
 	@Autowired
 	DoctorRepo repo;
-	@Autowired
-	AlienRepo r;
+	
 	@Autowired
 	LabRepo l;
 	@Autowired
@@ -67,12 +74,7 @@ public class HomeController
 	TabletRepo t;
 	@Autowired
 	HospitalRepo ht;
-	
-//	@ModelAttribute
-//	public void modelData1(Model a) 
-//	{
-//	a.addAttribute("name","alien");
-//	}
+
 	
 	@GetMapping("addappointment")
 	public String addapp() {
@@ -161,7 +163,7 @@ public class HomeController
 		if(l.findByEmail(email)!= null)
 		{
 			model.addAttribute("error","Email Id is already Exist" );
-			return"redirect:addlab";
+			return"addlab.jsp";
 		}
 		docStorageService.labuser(lname, email, phnumber, password);
 		return "laboratory.jsp";
@@ -173,7 +175,7 @@ public class HomeController
 		if(repo.findByEmail(email) != null)
 		{
 			model.addAttribute("error","Email Id is already Exist" );
-			return"redirect:addpatient";
+			return"addpatient.jsp";
 		}
 		docStorageService.doctoruser(dname, email, hname, speciality, password);
 		return "doctordashboard.jsp";
@@ -223,13 +225,7 @@ public class HomeController
 		public String error() {
 			return "redirect:/";
 		}
-//	
-//	@GetMapping("/error")
-//	public String error1() {
-//		return "index.html";
-//	}
 
-	
 	
 
 	@RequestMapping("/")
@@ -243,7 +239,7 @@ public class HomeController
 	@RequestMapping("/appointment")
 	public String Appointment()
 	{
-		return "k.jsp";
+		return "Appointment.jsp";
 	}
 	
 	
@@ -257,13 +253,7 @@ public class HomeController
 		return "mainlogin.html";
 	}
 	
-//	@GetMapping("h1")
-//	public String addAlien(@ModelAttribute Doctor o)
-//	{
-//		repo.save(o);
-//		return "h.html";
-//		
-//	}
+
 	
 	@GetMapping("labsignup")
 	public String labsignup() {
@@ -288,7 +278,7 @@ public class HomeController
 				 {
 					 model.addAttribute("error","Appointment already taken" );
 					
-					return "k.jsp";
+					return "Appointment.jsp";
 				 }
 			}
 			
@@ -321,7 +311,7 @@ public class HomeController
 		if(u.findByEmail(Email) != null)
 		{
 			model.addAttribute("error","Email Id is already Exist" );
-			return"redirect:labsignup";
+			return"signuplab.jsp";
 		}
 		docStorageService.labuser(Email, Password);
 		docStorageService.labuser(TestlabName,Email,phnumber,Password);
@@ -337,7 +327,7 @@ public class HomeController
 		if(re.findByEmail(email) != null)
 		{
 			model.addAttribute("error","Email Id is already Exist" );
-			return"redirect:patientsignup";
+			return"signupPatient.jsp";
 		}
 		docStorageService.patientuser(email, password);
 		docStorageService.patientuser(PatientName,email,DateOfBirth,age,phnumber,password);
@@ -355,7 +345,7 @@ public class HomeController
 		if(repo.findByEmail(email) != null)
 		{
 			model.addAttribute("error","Email Id is already Exist" );
-			return"redirect:doctorsignup";
+			return"signupDoctor.jsp";
 		}
 		docStorageService.doctoruser(email, Password);
 		docStorageService.doctoruser(dname, email, hname, Speciality, Password);
@@ -664,6 +654,17 @@ public class HomeController
 	public String backtoDash()
 	{
 		
-		return "k.jsp";
+		return "Appointment.jsp";
+	}
+	
+	@PostMapping("patientdash")
+	public String patientdashb(HttpServletRequest request,@RequestParam("id") int id,@RequestParam("email") String email)
+	{
+		a.deleteById(id);
+		Patient p = re.findByEmail(email);
+		request.setAttribute("ids", p.getId());
+		
+		return "patientSuccess.jsp";
+		
 	}
 }

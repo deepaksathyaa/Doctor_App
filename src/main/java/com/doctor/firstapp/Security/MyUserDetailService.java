@@ -1,4 +1,4 @@
-package com.doctor.firstapp;
+package com.doctor.firstapp.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.doctor.firstapp.model.Doctor;
+import com.doctor.firstapp.Repository.UserRepo;
 import com.doctor.firstapp.model.Users;
 
 @Service
