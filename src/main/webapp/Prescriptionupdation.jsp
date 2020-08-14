@@ -1,3 +1,6 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,12 +24,56 @@
                             <a><img src="assets/img/logo-dark.png" alt=""></a>
                         </div>
                         <div class="form-group">
-                            <label>Patient id</label>
-                            <input type="text" class="form-control" name = "patientid">
+                             <label>Patient id</label>
+                            <select class="form-control" name = "patientid" id = "patientid">
+				  <option value="">Patient Id</option>
+				  <% 
+				  try{
+					  Class.forName("com.mysql.jdbc.Driver");
+					  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Mohan007@123");
+					  
+					  String query = "select id from project.patient";
+					  
+					  ResultSet rs = con.createStatement().executeQuery(query); 
+					 
+					  while(rs.next())
+					  {
+						   %>
+						  <option value="<%=rs.getInt("id") %>"><%=rs.getInt("id") %>
+						  </option>
+						<% }
+					  }catch(Exception e)
+				  		{
+						  out.print(e.getMessage());
+				 		 }%> 
+					  
+                  </select>
                         </div>
                         <div class="form-group">
                             <label>Doctor id</label>
-                            <input type="text" class="form-control" name = "doctorid">
+                            <select class="form-control" name = "doctorid" id = "doctorid">
+				  <option value="">DoctorId</option>
+				  <% 
+				  try{
+					  Class.forName("com.mysql.jdbc.Driver");
+					  Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Mohan007@123");
+					  
+					  String query = "select id from project.doctor";
+					  
+					  ResultSet rs = con.createStatement().executeQuery(query); 
+					 
+					  while(rs.next())
+					  {
+						   %>
+						  <option value="<%=rs.getInt("id") %>"><%=rs.getInt("id") %>
+						  </option>
+						<% }
+					  }catch(Exception e)
+				  		{
+						  out.print(e.getMessage());
+				 		 }%> 
+					  
+                  </select>
                         </div>
                         <div class="form-group">
                             <label>Morning</label>
