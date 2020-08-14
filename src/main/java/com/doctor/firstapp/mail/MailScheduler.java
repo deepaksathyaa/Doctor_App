@@ -18,7 +18,7 @@ public class MailScheduler
 
 			Trigger trigger1 = TriggerBuilder.newTrigger()
 					.withIdentity("cronTrigger1", "group1")
-					.withSchedule(CronScheduleBuilder.cronSchedule("0 50 19 * * ?"))
+					.withSchedule(CronScheduleBuilder.cronSchedule("0 00 18 * * ?"))
 					.build();
 			
 			Scheduler scheduler1 = new StdSchedulerFactory().getScheduler();
