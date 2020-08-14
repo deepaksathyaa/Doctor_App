@@ -16,12 +16,32 @@
 
 <body>
     <div class="main-wrapper account-wrapper">
+	    <div class="header">
+			<div class="header-left">
+				<a href="index-2.html" class="logo">
+					<img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Preclinic</span>
+				</a>
+			</div>
+            <ul class="nav user-menu float-right">
+                
+                
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        
+							
+                        <span>Emerency line - +918070906050</span>
+                    </a>
+					
+                </li>
+            </ul>
+           
+        </div>
         <div class="account-page">
 			<div class="account-center">
 				<div class="account-box">
                     <form action="dashboard" class="form-signin" method = "POST">
 						<div class="account-logo">
-                            <a href="index-2.html"><img src="assets/img/logo-dark.png" alt=""></a>
+                            <a><img src="assets/img/logo-dark.png" alt=""></a>
                         </div>
                         <div class="form-group">
                             <label>Username or Email</label>
