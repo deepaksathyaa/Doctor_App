@@ -24,7 +24,7 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
+				<a class="logo">
 					<img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Virtusa</span>
 				</a>
 			</div>
@@ -66,7 +66,7 @@
                             <a href="doctordashboard"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
                         </li>
                         <li>
-                            <a href="patientdahboard"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+                            <a href="patientdashboard"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                         </li>
                         <li class="active">
                             <a href="appdashboard"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
